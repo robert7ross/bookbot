@@ -3,7 +3,7 @@ def main():
     text = load_text(book_path)
     count = count_words(text)
     character_dict = count_characters(text)
-    output_report(count, character_dict)
+    output_report(book_path, count, character_dict)
 
 def load_text(book_path):
     with open(book_path) as f:
@@ -22,10 +22,15 @@ def count_characters(text):
             character_count[character] = 1
     return character_count
 
-def output_report(word_count, character_dict):
+def output_report(book, word_count, character_dict):
+    print(f'--- Report of {book} ---\n')
     print(f'The number of words in the book is {word_count}.')
-    print(f"There are {character_dict['t']} t's in the text.")
-    print(f"There are {character_dict['!']} ! in the text.")
+    
+    alphabet = list('abcdefghijklmnopqrstuvwxyz')
+    for letter in alphabet:
+        print(f"There are {character_dict[letter]} {letter}'s in the text.")
+
+    print(f'\n--- End of Report ---')
 
 if __name__ == "__main__":
     main()
